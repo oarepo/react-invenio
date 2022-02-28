@@ -3,9 +3,15 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-import { Fragment } from 'react';
-import { registerSimpleComponent } from '../utils';
+import React, { Fragment, PropsWithChildren } from 'react';
+import { createRegisterable } from '../utils';
+import { BFC } from './types';
 
-export const BaseComponent = registerSimpleComponent(Fragment, 'fragment');
+export const Base: BFC<PropsWithChildren<{}>> = ({ children }) => {
+  return <Fragment>{children}</Fragment>;
+};
 
-export default BaseComponent;
+Base.displayName = 'raw';
+Base.Registerable = createRegisterable(Base);
+
+export default Base;

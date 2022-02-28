@@ -13,7 +13,7 @@ import {
   ItemMetaProps,
   ItemProps,
 } from 'semantic-ui-react';
-import { ContextService, resolveContextProps } from '../services';
+import { DataService, resolveDataProps } from '../services';
 import { createRegisterableComposition } from '../components/utils';
 
 /* A default noop composition, rendering its content as fragment */
@@ -31,7 +31,7 @@ export const ItemComposition = createRegisterableComposition<
       meta: ItemMetaProps;
       description: ItemDescriptionProps;
     },
-    services: ContextService
+    services: DataService
   ) => {
     const {
       item,
@@ -43,7 +43,7 @@ export const ItemComposition = createRegisterableComposition<
     } = transform(
       props,
       (result, value, key) => {
-        result[key] = resolveContextProps(value, services);
+        result[key] = resolveDataProps(value, services);
       },
       {} as any
     );

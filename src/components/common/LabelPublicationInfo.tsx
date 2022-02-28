@@ -3,9 +3,10 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-import React, { FC } from 'react';
+import React from 'react';
 import { Label, LabelProps } from 'semantic-ui-react';
-import { registerSimpleComponent } from '../utils';
+import { createRegisterable } from '../utils';
+import { BFC } from './types';
 
 export type LabelPublicationInfoProps = LabelProps & {
   /** Date of publication, internationalized string. */
@@ -16,15 +17,16 @@ export type LabelPublicationInfoProps = LabelProps & {
 };
 
 /**
- * A raw component that renders anything passed as children.
- * @param props props containing children content
+ * A component that renders record's publication
+ * date & published version.
+ * @param props props containing publication date & version
  * @returns
  */
-const LabelPublicationInfo: FC<LabelPublicationInfoProps> = (
-  props: LabelPublicationInfoProps
-) => {
-  const { datePublished, version, ...rest } = props;
-
+const LabelPublicationInfo: BFC<LabelPublicationInfoProps> = ({
+  datePublished,
+  version,
+  ...rest
+}: LabelPublicationInfoProps) => {
   const date = datePublished || 'No publication date.';
 
   return (
@@ -36,7 +38,8 @@ const LabelPublicationInfo: FC<LabelPublicationInfoProps> = (
 };
 
 LabelPublicationInfo.displayName = 'label-publication-info';
-
-export const LabelPublicationInfoComponent = registerSimpleComponent(
+LabelPublicationInfo.Registerable = createRegisterable(
   LabelPublicationInfo
 );
+
+export default LabelPublicationInfo;

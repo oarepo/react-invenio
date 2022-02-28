@@ -5,14 +5,14 @@
 
 import React, { FunctionComponent } from 'react';
 import { getRegistrationCreators } from 'json-react-layouts';
-import { ContextService } from '../services';
+import { DataService } from '../services';
 
 const {
   createRegisterableComponent,
   createRegisterableComposition,
-} = getRegistrationCreators<ContextService>();
+} = getRegistrationCreators<DataService>();
 
-function registerSimpleComponent(
+function createRegisterable(
   Component: React.ComponentClass | FunctionComponent<any>,
   name?: string
 ) {
@@ -26,7 +26,7 @@ function registerSimpleComponent(
 }
 
 export {
-  registerSimpleComponent,
+  createRegisterable,
   createRegisterableComponent,
   createRegisterableComposition,
 };

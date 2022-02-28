@@ -3,9 +3,10 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-import React, { FC, PropsWithChildren } from 'react';
-import { registerSimpleComponent } from '../utils';
+import React, { PropsWithChildren } from 'react';
+import { createRegisterable } from '../utils';
 import { LinkProps, Link } from './Link';
+import { BFC } from './types';
 
 type LinkRecordProps = LinkProps & {
   /**
@@ -16,14 +17,15 @@ type LinkRecordProps = LinkProps & {
 
 /**
  * A component for rendering hyperlinks.
- * @param props hyperlink attributes and children content
+ * @param props conaining info for construction of record hyperlink
  * @returns
  */
-const LinkRecord: FC<PropsWithChildren<LinkRecordProps>> = (
-  props: PropsWithChildren<LinkRecordProps>
-) => {
-  const { id, children, href, ...rest } = props;
-
+export const LinkRecord: BFC<PropsWithChildren<LinkRecordProps>> = ({
+  id,
+  children,
+  href,
+  ...rest
+}: PropsWithChildren<LinkRecordProps>) => {
   const linkTarget = `/records/${id}`;
 
   return (
@@ -34,7 +36,6 @@ const LinkRecord: FC<PropsWithChildren<LinkRecordProps>> = (
 };
 
 LinkRecord.displayName = 'record-link';
+LinkRecord.Registerable = createRegisterable(LinkRecord);
 
-export const LinkRecordComponent = registerSimpleComponent(LinkRecord);
-
-export default LinkRecordComponent;
+export default LinkRecord;
