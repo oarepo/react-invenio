@@ -1,0 +1,12 @@
+{
+    "editor.defaultFormatter": "Glavin001.unibeautify-vscode",
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "SimonSiefke.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "SimonSiefke.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "SimonSiefke.prettier-vscode"
+    }
+}
