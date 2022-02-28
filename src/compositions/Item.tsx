@@ -13,7 +13,7 @@ import {
   ItemMetaProps,
   ItemProps,
 } from 'semantic-ui-react';
-import { ContextService, resolveContextProps } from '..';
+import { ContextService, resolveContextProps } from '../services';
 import { createRegisterableComposition } from '../components/utils';
 
 /* A default noop composition, rendering its content as fragment */
