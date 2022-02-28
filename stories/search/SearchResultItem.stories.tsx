@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Meta, Story } from '@storybook/react';
 import {
   SearchResultItem,
@@ -21,19 +21,19 @@ const Template: Story<SearchResultItemProps> = (args) => (
 
 // By passing using the Args format for exported stories, you can control the props for a component for reuse in a test
 // https://storybook.js.org/docs/react/workflows/unit-testing
-export const FullRecord = Template.bind({});
+// export const FullRecord = Template.bind({});
 
-FullRecord.args = {
-  result: fullRecord,
-  index: 10,
-  uiConfig: uiConfig,
-};
+// FullRecord.args = {
+//   result: fullRecord,
+//   index: 10,
+//   uiConfig: uiConfig,
+// };
 
 export const MinimalRecord = Template.bind({});
 
 MinimalRecord.args = {
   context: {
-    ...fullRecord,
+    ...{ id: 'abcd' },
     listIndex: 10,
   },
   uiConfig: uiConfig,
