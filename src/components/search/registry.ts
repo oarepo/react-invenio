@@ -3,10 +3,10 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-import { lazy } from 'react';
+import loadable from '@loadable/component';
 
 export const searchComponents: any[] = [
-  lazy(() =>
-    import(/* webpackChunkName: searchComponents */ './SearchResultItem')
+  loadable(() =>
+    import(/* webpackChunkName: 'searchComponents' */ './SearchResultItem')
   ),
 ];

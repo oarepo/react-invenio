@@ -15,5 +15,6 @@ export const DataMiddleware = (
   const { services } = serviceProps;
   const resolvedProps = resolveDataProps(componentProps, services);
 
+  // console.log('mw', services, 'before', componentProps, 'after', resolvedProps);
   return next(resolvedProps, middlewareProps, services);
 };

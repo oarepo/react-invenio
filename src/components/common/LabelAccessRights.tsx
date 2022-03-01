@@ -10,7 +10,7 @@ import { createRegisterable } from '../utils';
 import { BFC } from './types';
 
 export type LabelAccessStatusProps = LabelProps & {
-  accessRights: {
+  accessRights?: {
     /** Unique identifier of access right mode. */
     id: string;
     /** Internationalized title for the access right mode. */
@@ -32,21 +32,21 @@ const LabelAccessRights: BFC<LabelAccessStatusProps> = ({
   ...rest
 }: LabelAccessStatusProps) => {
   const rsize = size || 'tiny';
-  const statusClass = accessRights.id || 'open';
-  const statusIcon = accessRights.icon || 'unlock';
+  const statusClass = accessRights?.id || 'open';
+  const statusIcon = accessRights?.icon || 'unlock';
   const classess = classNames(className, `access-status ${statusClass}`);
 
   return (
     <Label size={rsize} className={classess} {...rest}>
       {statusIcon && <i className={`icon ${statusIcon}`} />}
-      {accessRights.title_l10n}
+      {accessRights?.title_l10n || 'Open'}
     </Label>
   );
 };
 
-LabelAccessRights.displayName = 'label-access-rights';
 LabelAccessRights.Registerable = createRegisterable(
-  LabelAccessRights
+  LabelAccessRights,
+  'label-access-rights'
 );
 
 export default LabelAccessRights;

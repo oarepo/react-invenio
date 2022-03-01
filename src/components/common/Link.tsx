@@ -24,7 +24,6 @@ export const Link: BFC<PropsWithChildren<LinkProps>> = ({
   return <a {...rest}>{children}</a>;
 };
 
-Link.displayName = 'link';
 Link.Registerable = createRegisterable(Link);
 
 export default Link;

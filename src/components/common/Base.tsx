@@ -11,7 +11,7 @@ export const Base: BFC<PropsWithChildren<{}>> = ({ children }) => {
   return <Fragment>{children}</Fragment>;
 };
 
-Base.displayName = 'raw';
+// Base.displayName = 'raw';
 Base.Registerable = createRegisterable(Base);
 
 export default Base;

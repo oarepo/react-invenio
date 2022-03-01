@@ -3,9 +3,9 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-import React, { Fragment } from 'react';
+import React from 'react';
 import { createRegisterable } from '../utils';
-import { DynamicViewProps } from '../common/DynamicView';
+import { DynamicView, DynamicViewProps } from '../common/DynamicView';
 import { BFC } from '../common/types';
 
 export type SearchResultItemProps = DynamicViewProps & {
@@ -18,11 +18,13 @@ export type SearchResultItemProps = DynamicViewProps & {
 /**
  * An item of a record search result list.
  */
-export const SearchResultItem: BFC<SearchResultItemProps> = ({}) => {
-  return <Fragment></Fragment>; // <DynamicView data={data} uiConfig={uiConfig}></DynamicView>;
+export const SearchResultItem: BFC<SearchResultItemProps> = ({
+  data,
+  uiConfig,
+}) => {
+  return <DynamicView data={data} uiConfig={uiConfig}></DynamicView>;
 };
 
-SearchResultItem.displayName = 'search-result-item';
 SearchResultItem.Registerable = createRegisterable(SearchResultItem);
 
 export default SearchResultItem;

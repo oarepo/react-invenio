@@ -40,7 +40,9 @@ const LabelSubjects: BFC<LabelSubjectsProps> = ({
   );
 };
 
-LabelSubjects.displayName = 'label-subjects';
-LabelSubjects.Registerable = createRegisterable(LabelSubjects);
+LabelSubjects.Registerable = createRegisterable(
+  LabelSubjects,
+  'label-subjects'
+);
 
 export default LabelSubjects;

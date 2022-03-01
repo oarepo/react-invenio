@@ -27,7 +27,9 @@ const TextShortened: BFC<PropsWithChildren<TextShortenedProps>> = ({
   );
 };
 
-TextShortened.displayName = 'text-shortened';
-TextShortened.Registerable = createRegisterable(TextShortened);
+TextShortened.Registerable = createRegisterable(
+  TextShortened,
+  'text-shortened'
+);
 
 export default TextShortened;

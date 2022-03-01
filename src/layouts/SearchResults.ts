@@ -7,16 +7,21 @@ import { LayoutRegistration } from 'json-react-layouts';
 import { DataMiddleware } from '../middleware';
 import { DataService } from '../services';
 import DefaultComposition from '../compositions/Default';
-import ItemComposition from '../compositions/Item';
-import { searchComponents } from '../components/search/registry';
 import BaseComponent from '../components/common/Base';
 import { commonComponents } from '../components/common/registry';
+import { ItemComposition } from '..';
 
 export const SearchResultsLayout = LayoutRegistration<DataService>()
   .registerComponents((registrar) => {
     const builder = registrar.registerComponent(BaseComponent.Registerable!);
-    commonComponents.map((cc) => builder.registerComponent(cc));
-    searchComponents.map((cc) => builder.registerComponent(cc));
+    commonComponents.map(async (cc) => {
+      // TODO: find a way that we can register a lazy reference and load on-demand
+      const module = await cc.load();
+      const component = module.default;
+      if (component.Registerable) {
+        builder.registerComponent(component.Registerable);
+      }
+    });
 
     builder.registerMiddleware(DataMiddleware);
     return builder;

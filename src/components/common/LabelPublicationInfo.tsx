@@ -37,9 +37,9 @@ const LabelPublicationInfo: BFC<LabelPublicationInfoProps> = ({
   );
 };
 
-LabelPublicationInfo.displayName = 'label-publication-info';
 LabelPublicationInfo.Registerable = createRegisterable(
-  LabelPublicationInfo
+  LabelPublicationInfo,
+  'label-publication-info'
 );
 
 export default LabelPublicationInfo;

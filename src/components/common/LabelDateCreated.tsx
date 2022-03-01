@@ -34,9 +34,9 @@ const LabelDateCreated: BFC<LabelDateCreatedProps> = ({
   );
 };
 
-LabelDateCreated.displayName = 'label-date-created';
 LabelDateCreated.Registerable = createRegisterable(
-  LabelDateCreated
+  LabelDateCreated,
+  'label-date-created'
 );
 
 export default LabelDateCreated;

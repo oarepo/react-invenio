@@ -35,7 +35,6 @@ export const LinkRecord: BFC<PropsWithChildren<LinkRecordProps>> = ({
   );
 };
 
-LinkRecord.displayName = 'record-link';
-LinkRecord.Registerable = createRegisterable(LinkRecord);
+LinkRecord.Registerable = createRegisterable(LinkRecord, 'record-link');
 
 export default LinkRecord;

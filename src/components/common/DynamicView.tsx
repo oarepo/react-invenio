@@ -43,7 +43,6 @@ export const DynamicView: BFC<DynamicViewProps> = ({ data, uiConfig }) => {
   );
 };
 
-DynamicView.displayName = 'dynamic-view';
-DynamicView.Registerable = createRegisterable(DynamicView);
+DynamicView.Registerable = createRegisterable(DynamicView, 'dynamic-view');
 
 export default DynamicView;

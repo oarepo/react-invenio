@@ -4,7 +4,7 @@
   "composition": {
     "type": "item",
     "props": {
-      "item": { "$context-key": "listIndex" },
+      "item": { "$data-key": "listIndex" },
       "extraTop": {
         "className": "labels-actions"
       },
@@ -19,8 +19,8 @@
           "props": {
             "size": "tiny",
             "color": "blue",
-            "$context-datePublished": "ui.publication_date_l10n_long",
-            "$context-version": "ui.version"
+            "$data-datePublished": "ui.publication_date_l10n_long",
+            "$data-version": "ui.version"
           }
         },
         {
@@ -28,7 +28,7 @@
           "props": {
             "size": "tiny",
             "color": "grey",
-            "$context-children": {
+            "$data-children": {
               "path": "ui.resource_type.title_l10n",
               "default": "No resource type"
             }
@@ -37,7 +37,7 @@
         {
           "type": "label-access-rights",
           "props": {
-            "$context-accessRights": "ui.access_status"
+            "$data-accessRights": "ui.access_status"
           }
         }
       ],
@@ -45,8 +45,8 @@
         {
           "type": "record-link",
           "props": {
-            "$context-id": "id",
-            "$context-children": "metadata.title"
+            "$data-id": "id",
+            "$data-children": "metadata.title"
           }
         }
       ],
@@ -55,7 +55,7 @@
           "type": "text-shortened",
           "props": {
             "length": 350,
-            "$context-children": {
+            "$data-children": {
               "path": "ui.description_stripped",
               "default": "No description"
             }
@@ -67,13 +67,13 @@
           "type": "label-subjects",
           "props": {
             "size": "tiny",
-            "$context-subjects": "ui.subjects"
+            "$data-subjects": "ui.subjects"
           }
         },
         {
           "type": "label-date-created",
           "props": {
-            "$context-dateCreated": "ui.created_date_l10n_long"
+            "$data-dateCreated": "ui.created_date_l10n_long"
           }
         }
       ]

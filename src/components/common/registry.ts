@@ -2,28 +2,30 @@
 //
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
-import { lazy } from 'react';
+import loadable from '@loadable/component';
 
 // TODO: this is just first step
 // ultimate goal will be to lazyload only the
 // components needed by current layout/composition
 export const commonComponents: any[] = [
-  lazy(() => import(/* webpackChunkName: 'commonComponents' */ './Link')),
-  lazy(() =>
+  loadable(() => import(/* webpackChunkName: 'commonComponents' */ './Link')),
+  loadable(() =>
     import(/* webpackChunkName: 'commonComponents' */ './LabelAccessRights')
   ),
-  lazy(() =>
+  loadable(() =>
     import(/* webpackChunkName: 'commonComponents' */ './LabelDateCreated')
   ),
-  lazy(() =>
+  loadable(() =>
     import(/* webpackChunkName: 'commonComponents' */ './LabelPublicationInfo')
   ),
-  lazy(() =>
+  loadable(() =>
     import(/* webpackChunkName: 'commonComponents' */ './LabelSubjects')
   ),
-  lazy(() => import(/* webpackChunkName: 'commonComponents' */ './Link')),
-  lazy(() => import(/* webpackChunkName: 'commonComponents' */ './LinkRecord')),
-  lazy(() =>
+  loadable(() => import(/* webpackChunkName: 'commonComponents' */ './SLabel')),
+  loadable(() =>
+    import(/* webpackChunkName: 'commonComponents' */ './LinkRecord')
+  ),
+  loadable(() =>
     import(/* webpackChunkName: 'commonComponents' */ './TextShortened')
   ),
 ];

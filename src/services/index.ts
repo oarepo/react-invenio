@@ -38,12 +38,13 @@ export function resolveDataProp(key: string, value: any, service: DataService) {
     if (isPlainObject(value)) {
       return {
         key: key.slice(6),
-        value: _get(service.data, value.path, value.default || null),
+        value: _get(service, value.path, value.default || null),
       };
     }
+
     return {
       key: key.slice(6),
-      value: _get(service.data, value),
+      value: _get(service, value),
     };
   }
   return { key, value };
