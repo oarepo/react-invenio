@@ -4,12 +4,13 @@
 // https://opensource.org/licenses/MIT
 
 import classNames from 'classnames';
-import React, { FC } from 'react';
+import React from 'react';
 import { Label, LabelProps } from 'semantic-ui-react';
-import { registerSimpleComponent } from '../utils';
+import { createRegisterable } from '../utils';
+import { BFC } from './types';
 
 export type LabelAccessStatusProps = LabelProps & {
-  accessRights: {
+  accessRights?: {
     /** Unique identifier of access right mode. */
     id: string;
     /** Internationalized title for the access right mode. */
@@ -20,30 +21,32 @@ export type LabelAccessStatusProps = LabelProps & {
 };
 
 /**
- * A raw component that renders anything passed as children.
- * @param props props containing children content
+ * A component rendering the record's access rights label.
+ * @param props props containing accessRights info
  * @returns
  */
-const LabelAccessRights: FC<LabelAccessStatusProps> = (
-  props: LabelAccessStatusProps
-) => {
-  const { accessRights, size, className, ...rest } = props;
-
+const LabelAccessRights: BFC<LabelAccessStatusProps> = ({
+  accessRights,
+  size,
+  className,
+  ...rest
+}: LabelAccessStatusProps) => {
   const rsize = size || 'tiny';
-  const statusClass = accessRights.id || 'open';
-  const statusIcon = accessRights.icon || 'unlock';
+  const statusClass = accessRights?.id || 'open';
+  const statusIcon = accessRights?.icon || 'unlock';
   const classess = classNames(className, `access-status ${statusClass}`);
 
   return (
     <Label size={rsize} className={classess} {...rest}>
       {statusIcon && <i className={`icon ${statusIcon}`} />}
-      {accessRights.title_l10n}
+      {accessRights?.title_l10n || 'Open'}
     </Label>
   );
 };
 
-LabelAccessRights.displayName = 'label-access-rights';
-
-export const LabelAccessRightsComponent = registerSimpleComponent(
-  LabelAccessRights
+LabelAccessRights.Registerable = createRegisterable(
+  LabelAccessRights,
+  'label-access-rights'
 );
+
+export default LabelAccessRights;

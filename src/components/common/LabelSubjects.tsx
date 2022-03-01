@@ -3,9 +3,10 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-import React, { FC, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { Label, LabelProps } from 'semantic-ui-react';
-import { registerSimpleComponent } from '../utils';
+import { createRegisterable } from '../utils';
+import { BFC } from './types';
 
 type LabelSubject = {
   /** Internationalized subject title. */
@@ -18,12 +19,15 @@ export type LabelSubjectsProps = LabelProps & {
 };
 
 /**
- * A raw component that renders anything passed as children.
- * @param props props containing children content
+ * A component rendering labels of record's subjects
+ * @param props props containing record subjects
  * @returns
  */
-const LabelSubjects: FC<LabelSubjectsProps> = (props: LabelSubjectsProps) => {
-  const { subjects, key, ...rest } = props;
+const LabelSubjects: BFC<LabelSubjectsProps> = ({
+  subjects,
+  key,
+  ...rest
+}: LabelSubjectsProps) => {
   return (
     <Fragment>
       {subjects &&
@@ -36,6 +40,9 @@ const LabelSubjects: FC<LabelSubjectsProps> = (props: LabelSubjectsProps) => {
   );
 };
 
-LabelSubjects.displayName = 'label-subjects';
+LabelSubjects.Registerable = createRegisterable(
+  LabelSubjects,
+  'label-subjects'
+);
 
-export const LabelSubjectsComponent = registerSimpleComponent(LabelSubjects);
+export default LabelSubjects;

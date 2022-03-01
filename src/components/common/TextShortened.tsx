@@ -4,8 +4,9 @@
 // https://opensource.org/licenses/MIT
 
 import _truncate from 'lodash/truncate';
-import React, { FC, Fragment, PropsWithChildren } from 'react';
-import { registerSimpleComponent } from '../utils';
+import React, { Fragment, PropsWithChildren } from 'react';
+import { createRegisterable } from '../utils';
+import { BFC } from './types';
 
 export type TextShortenedProps = {
   /** Maximum number of characters allowed in a text. */
@@ -13,20 +14,22 @@ export type TextShortenedProps = {
 };
 
 /**
- * A raw component that renders anything passed as children.
- * @param props props containing children content
+ * A component that renders text shortened to a maximum length.
+ * @param props props containing maximum length
  * @returns
  */
-const TextShortened: FC<PropsWithChildren<TextShortenedProps>> = (
-  props: PropsWithChildren<TextShortenedProps>
-) => {
+const TextShortened: BFC<PropsWithChildren<TextShortenedProps>> = ({
+  length,
+  children,
+}: PropsWithChildren<TextShortenedProps>) => {
   return (
-    <Fragment>
-      {_truncate(props.children?.toString(), { length: props.length })}
-    </Fragment>
+    <Fragment>{_truncate(children?.toString(), { length: length })}</Fragment>
   );
 };
 
-TextShortened.displayName = 'text-shortened';
+TextShortened.Registerable = createRegisterable(
+  TextShortened,
+  'text-shortened'
+);
 
-export const TextShortenedComponent = registerSimpleComponent(TextShortened);
+export default TextShortened;

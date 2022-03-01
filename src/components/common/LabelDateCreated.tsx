@@ -3,8 +3,9 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-import React, { FC, Fragment, HTMLAttributes } from 'react';
-import { registerSimpleComponent } from '../utils';
+import React, { Fragment, HTMLAttributes } from 'react';
+import { createRegisterable } from '../utils';
+import { BFC } from './types';
 
 export type LabelDateCreatedProps = HTMLAttributes<HTMLDivElement> & {
   /** Date when the record was submitted. */
@@ -12,15 +13,14 @@ export type LabelDateCreatedProps = HTMLAttributes<HTMLDivElement> & {
 };
 
 /**
- * A raw component that renders anything passed as children.
- * @param props props containing children content
+ * A component that renders date of record's creation.
+ * @param props props containing record creation date
  * @returns
  */
-const LabelDateCreated: FC<LabelDateCreatedProps> = (
-  props: LabelDateCreatedProps
-) => {
-  const { dateCreated, ...rest } = props;
-
+const LabelDateCreated: BFC<LabelDateCreatedProps> = ({
+  dateCreated,
+  ...rest
+}: LabelDateCreatedProps) => {
   return (
     <Fragment>
       {dateCreated && (
@@ -34,8 +34,9 @@ const LabelDateCreated: FC<LabelDateCreatedProps> = (
   );
 };
 
-LabelDateCreated.displayName = 'label-date-created';
-
-export const LabelDateCreatedComponent = registerSimpleComponent(
-  LabelDateCreated
+LabelDateCreated.Registerable = createRegisterable(
+  LabelDateCreated,
+  'label-date-created'
 );
+
+export default LabelDateCreated;

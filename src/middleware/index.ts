@@ -4,16 +4,17 @@
 // https://opensource.org/licenses/MIT
 
 import _get from 'lodash/get';
-import { ContextService, resolveContextProps } from '../services';
+import { DataService, resolveDataProps } from '../services';
 
-export const ContextMiddleware = (
+export const DataMiddleware = (
   componentProps: { [key: string]: any },
   middlewareProps: { [key: string]: any },
-  serviceProps: { services: ContextService },
+  serviceProps: { services: DataService },
   next: any
 ) => {
   const { services } = serviceProps;
-  const resolvedProps = resolveContextProps(componentProps, services);
+  const resolvedProps = resolveDataProps(componentProps, services);
 
+  // console.log('mw', services, 'before', componentProps, 'after', resolvedProps);
   return next(resolvedProps, middlewareProps, services);
 };

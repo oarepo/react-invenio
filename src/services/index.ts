@@ -7,22 +7,22 @@ import isPlainObject from 'lodash/isPlainObject';
 import _get from 'lodash/get';
 import transform from 'lodash/transform';
 
-export interface Context {
+export interface Data {
   [key: string]: any;
 }
 
-export type ContextService = {
-  context: Context;
+export type DataService = {
+  data: Data;
 };
 
-export function resolveContextProps(
+export function resolveDataProps(
   props: { [key: string]: any },
-  service: ContextService
+  service: DataService
 ): { [key: string]: any } {
   return transform(
     props,
     (result, value, key) => {
-      const { key: k, value: v } = resolveContextProp(
+      const { key: k, value: v } = resolveDataProp(
         key.toString(),
         value,
         service
@@ -33,21 +33,18 @@ export function resolveContextProps(
   );
 }
 
-export function resolveContextProp(
-  key: string,
-  value: any,
-  service: ContextService
-) {
-  if (key.startsWith('$context-')) {
+export function resolveDataProp(key: string, value: any, service: DataService) {
+  if (key.startsWith('$data-')) {
     if (isPlainObject(value)) {
       return {
-        key: key.slice(9),
-        value: _get(service.context, value.path, value.default || null),
+        key: key.slice(6),
+        value: _get(service, value.path, value.default || null),
       };
     }
+
     return {
-      key: key.slice(9),
-      value: _get(service.context, value),
+      key: key.slice(6),
+      value: _get(service, value),
     };
   }
   return { key, value };

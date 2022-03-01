@@ -10,11 +10,8 @@ import {
   LayoutApi,
   RenderLayouts,
 } from 'json-react-layouts';
-import { registeredLayouts } from '../layouts';
-import { ContextService } from '../services';
-
-export * from './Default';
-export * from './Item';
+import { registeredLayouts } from '../layouts/registry';
+import { DataService } from '../services';
 
 export type LayoutComposition = {
   renderer: RenderLayouts;
@@ -26,13 +23,13 @@ export type ResolvedCompositionConfig = {
   layoutApi: LayoutApi<
     ComponentInformation<string, any>,
     any,
-    ContextService,
+    DataService,
     any,
     any
   >;
 };
 
-export function resolveCompositionConfig(config: {
+export function useCompositionConfig(config: {
   layout?: string;
   [key: string]: any;
 }): ResolvedCompositionConfig {
@@ -48,12 +45,12 @@ export function useComposition(
   layout: LayoutApi<
     ComponentInformation<string, any>,
     any,
-    ContextService,
+    DataService,
     any,
     any
   >,
   definition: any,
-  services?: ContextService
+  services?: DataService
 ): LayoutComposition {
   const renderer = layout.createRenderers({ services });
   const compositionApi = layout.composition(definition);

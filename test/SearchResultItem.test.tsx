@@ -1,11 +1,11 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Default as Thing } from '../stories/Thing.stories';
+import { FullRecord } from '../stories/search/SearchResultItem.stories';
 
-describe('Thing', () => {
+describe('FullRecord', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Thing />, div);
+    ReactDOM.render(<FullRecord />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 });

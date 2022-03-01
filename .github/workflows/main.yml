@@ -30,6 +30,3 @@ jobs:
 
       - name: Build
         run: yarn build
-
-      - name: Chromatic
-        run: yarn run chromatic

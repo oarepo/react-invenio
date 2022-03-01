@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Meta, Story } from '@storybook/react';
-import { SearchResultItem, ResultItemProps } from '../../src/components/search';
+import {
+  SearchResultItem,
+  SearchResultItemProps,
+} from '../../src/components/search';
+import uiConfig from '../fixtures/record-search-result-item.json';
 import fullRecord from '../fixtures/full-record.json';
 import 'semantic-ui-css/semantic.min.css';
 
 const meta: Meta = {
-  title: 'Record Search/Result Item',
+  title: 'Record Search/Dynamic Result Item',
   component: SearchResultItem,
 };
 
 export default meta;
 
-const Template: Story<ResultItemProps> = (args) => (
+const Template: Story<SearchResultItemProps> = (args) => (
   <SearchResultItem {...args} />
 );
 
@@ -20,13 +24,19 @@ const Template: Story<ResultItemProps> = (args) => (
 export const FullRecord = Template.bind({});
 
 FullRecord.args = {
-  result: fullRecord,
-  index: 0,
+  data: {
+    listIndex: 10,
+    ...fullRecord,
+  },
+  uiConfig: uiConfig,
 };
 
 export const MinimalRecord = Template.bind({});
 
 MinimalRecord.args = {
-  result: {},
-  index: 0,
+  data: {
+    id: 'abcd',
+    listIndex: 10,
+  },
+  uiConfig: uiConfig,
 };
