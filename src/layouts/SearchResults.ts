@@ -9,7 +9,7 @@ import { DataService } from '../services';
 import DefaultComposition from '../compositions/Default';
 import BaseComponent from '../components/common/Base';
 import { commonComponents } from '../components/common/registry';
-import { ItemComposition } from '..';
+import { ItemComposition } from '../compositions/Item';
 
 export const SearchResultsLayout = LayoutRegistration<DataService>()
   .registerComponents((registrar) => {
